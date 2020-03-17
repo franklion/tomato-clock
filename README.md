@@ -25,11 +25,13 @@
 
 - Sass
 
+## VSCODE 設定
+
+- ✅ formatOnSave 移除檔案中多餘空白
+
+- ✅ files.trimTrailingWhitespace 移除檔案中多餘空白
+
 ## git
-
-## references
-
-- Mixin VS Extend: https://ithelp.ithome.com.tw/articles/10157149
 
 ### type 只允許使用以下類別：
 
@@ -42,3 +44,7 @@
 - test: 增加測試 (when adding missing tests)。
 - chore: 建構程序或輔助工具的變動 (maintain)。
 - revert: 撤銷回覆先前的 commit 例如：revert: type(scope): subject (回覆版本：xxxx)。
+
+## references
+
+- Mixin VS Extend: https://ithelp.ithome.com.tw/articles/10157149
