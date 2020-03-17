@@ -27,6 +27,10 @@
 
 ## git
 
+## references
+
+- Mixin VS Extend: https://ithelp.ithome.com.tw/articles/10157149
+
 ### type 只允許使用以下類別：
 
 - feat: 新增/修改功能 (feature)。
