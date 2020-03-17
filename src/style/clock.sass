@@ -1,0 +1,74 @@
+%control-bar-btn
+  width: 62px
+  height: 62px
+  margin: 0 20px
+  border-radius: 50%
+  transition: all .5s
+  cursor: pointer
+  background-repeat: no-repeat
+  background-size: 100%
+  &:hover
+    background-color: #D9343F
+
+.clock
+  display: flex
+  justify-content: center
+  margin-top: 88px
+
+  .clock-container
+    position: relative
+    width: 637px
+    margin: 0 auto
+
+  .clock-cycle-base
+    position: absolute
+    top: 0
+    left: 0
+    pointer-events: none
+    .clock-cycle-upper-layer
+      fill: none
+      stroke: #F2F0C9
+      stroke-width: 7
+      stroke-linecap: round
+      stroke-miterlimit: 10
+      stroke-dasharray: 1979px
+      stroke-dashoffset: 1979px
+      transform: rotate(-90deg)
+      transform-origin: 318.5px 318.5px
+    .clock-cycle-lower-layer
+      fill: none
+      stroke: rgba(242,240,201,0.35)
+      stroke-width: 7
+      stroke-linecap: round
+      stroke-miterlimit: 10
+
+  .current-mission
+    font-size: 32px
+    color: #F2F0C9
+    text-align: center
+    letter-spacing: 2px
+    padding: 180px 0 59px 0
+    margin: 0
+
+  .time
+    font-size: 90px
+    letter-spacing: 18px
+    color: #F2F0C9
+    text-align: center
+    margin-bottom: 70px
+
+  .control-bar
+    display: flex
+    justify-content: center
+
+    .btn-bell
+      @extend %control-bar-btn
+      background-image: url('../images/btn-bell.svg')
+
+    .btn-play
+      @extend %control-bar-btn
+      background-image: url('../images/btn-play.svg')
+
+    .btn-skip
+      @extend %control-bar-btn
+      background-image: url('../images/btn-skip.svg')
