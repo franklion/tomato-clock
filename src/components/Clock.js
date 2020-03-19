@@ -34,8 +34,8 @@ const Clock = ({ initCountdown, currentMission, initIsBell = true } = {}) => {
   }, [time, isPlay])
 
   const onBtnPlay = useCallback(() => {
-    setIsPlay(prevIsPlay => !prevIsPlay)
-  }, [])
+    time > 0 && setIsPlay(prevIsPlay => !prevIsPlay)
+  }, [time])
 
   const renderBtnPlayClass = useMemo(
     () =>
