@@ -1,12 +1,8 @@
-import React, { useState, useCallback, useMemo } from "react"
+import React, { useState, useCallback, useMemo, memo } from "react"
 import classNames from "classnames"
 
 const Header = () => {
   const [isShow, setIsShow] = useState(false)
-
-  const handleToggleHamburger = useCallback(() => {
-    setIsShow(prevIsShow => !prevIsShow)
-  }, [])
 
   const renderHamburgerClass = useMemo(
     () =>
@@ -23,7 +19,12 @@ const Header = () => {
         <div className="logo"></div>
         <div className="slogan"></div>
       </div>
-      <div className={renderHamburgerClass} onClick={handleToggleHamburger}>
+      <div
+        className={renderHamburgerClass}
+        onClick={() => {
+          setIsShow(prevIsShow => !prevIsShow)
+        }}
+      >
         <span className="line"></span>
         <span className="line"></span>
         <span className="line"></span>
@@ -32,4 +33,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default memo(Header)
