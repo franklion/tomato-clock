@@ -17,6 +17,11 @@ const App = () => {
   const [time, setTime] = useState(clockSetting.workingTime)
   const [currentMissionId, setCurrentMissionId] = useState(missions[0].id)
   const progressGapRef = useRef(Math.floor(cons.INIT_PROGRESS_VALUE / clockSetting.workingTime))
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleToggleMenu = () => {
+    setIsOpen(prevIsOpen => !prevIsOpen)
+  }
 
   const handleBtnPlay = () => {
     time > 0 && !currentMission.isCompleted && setIsPlay(prevIsPlay => !prevIsPlay)
@@ -68,12 +73,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <Deco />
-      <Header />
-      <AddMission />
+      <Deco isOpen={isOpen} />
+      <Header isOpen={isOpen} onToggleMenu={handleToggleMenu} />
+      <AddMission isOpen={isOpen} />
       <Clock
         isBell={isBell}
         isPlay={isPlay}
+        isOpen={isOpen}
         currentMission={currentMission.mission}
         time={time}
         progress={progress}

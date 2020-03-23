@@ -1,8 +1,9 @@
-import React, { useState, useCallback, useRef, useEffect, useContext, memo } from "react"
+import React, { useState, useCallback, useRef, useEffect, useContext, useMemo, memo } from "react"
 import { ContextStore } from "../context"
 import cons from "../constants"
+import classNames from "classnames"
 
-const AddMission = () => {
+const AddMission = ({ isOpen = false }) => {
   const { dispatch } = useContext(ContextStore)
   const [newMission, setMission] = useState("")
   const newMissionRef = useRef()
@@ -19,8 +20,17 @@ const AddMission = () => {
     }
   }, [newMissionRef, dispatch])
 
+  const renderAddMissionClass = useMemo(
+    () =>
+      classNames({
+        "add-mission": true,
+        "is-open": isOpen
+      }),
+    [isOpen]
+  )
+
   return (
-    <div className="add-mission">
+    <div className={renderAddMissionClass}>
       <input
         className="add-mission-input"
         type="text"

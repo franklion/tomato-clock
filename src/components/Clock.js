@@ -2,7 +2,7 @@ import React, { useMemo, memo } from "react"
 import classNames from "classnames"
 import PropTypes from "prop-types"
 
-const Clock = ({ isBell, isPlay, currentMission, time = 0, progress, onBtnBell, onBtnPlay, onBtnNext }) => {
+const Clock = ({ isBell, isPlay, isOpen, currentMission, time = 0, progress, onBtnBell, onBtnPlay, onBtnNext }) => {
   const renderBtnPlayClass = useMemo(
     () =>
       classNames({
@@ -40,8 +40,17 @@ const Clock = ({ isBell, isPlay, currentMission, time = 0, progress, onBtnBell, 
     return `${filteredMinute}:${filteredSecond}`
   }, [time])
 
+  const renderClockClass = useMemo(
+    () =>
+      classNames({
+        clock: true,
+        "is-open": isOpen
+      }),
+    [isOpen]
+  )
+
   return (
-    <div className="clock">
+    <div className={renderClockClass}>
       <div className="clock-container">
         <svg className="clock-cycle-base" x="0px" y="0px" width="637px" height="637px" viewBox="0 0 637 637">
           <circle className="clock-cycle-upper-layer" cx="318.5" cy="318.5" r="315" style={{ strokeDashoffset: renderProgressStyle }}></circle>
@@ -62,6 +71,7 @@ const Clock = ({ isBell, isPlay, currentMission, time = 0, progress, onBtnBell, 
 Clock.propTypes = {
   isBell: PropTypes.bool.isRequired,
   isPlay: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   currentMission: PropTypes.string.isRequired,
   time: PropTypes.number.isRequired,
   progress: PropTypes.number.isRequired,
