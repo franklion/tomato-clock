@@ -4,7 +4,8 @@ import Deco from "./Deco"
 import Header from "./Header"
 import AddMission from "./AddMission"
 import Clock from "./Clock"
-import Nav from "./Nav"
+import NavControl from "./NavControl"
+import NavContent from "./NavContent"
 import cons from "../constants"
 
 window.TIMER = null
@@ -18,9 +19,15 @@ const App = () => {
   const [currentMissionId, setCurrentMissionId] = useState(missions[0].id)
   const progressGapRef = useRef(Math.floor(cons.INIT_PROGRESS_VALUE / clockSetting.workingTime))
   const [isOpen, setIsOpen] = useState(false)
+  const [currentNavContentId, setCurrentNavContentId] = useState(null)
 
   const handleToggleMenu = () => {
     setIsOpen(prevIsOpen => !prevIsOpen)
+  }
+
+  const handleShowMenu = navContentId => {
+    setIsOpen(true)
+    setCurrentNavContentId(navContentId)
   }
 
   const handleBtnPlay = () => {
@@ -71,8 +78,16 @@ const App = () => {
     }
   }, [time, isBell, isPlay, currentMission, dispatch])
 
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentNavContentId(cons.LIST_SECTION)
+    } else {
+      setCurrentNavContentId(null)
+    }
+  }, [isOpen])
+
   return (
-    <div className="App">
+    <div className="app">
       <Deco isOpen={isOpen} />
       <Header isOpen={isOpen} onToggleMenu={handleToggleMenu} />
       <AddMission isOpen={isOpen} />
@@ -87,7 +102,8 @@ const App = () => {
         onBtnPlay={handleBtnPlay}
         onBtnNext={handleNextMission}
       />
-      <Nav isOpen={isOpen} />
+      <NavControl isOpen={isOpen} currentNavContentId={currentNavContentId} onShowMenu={handleShowMenu} />
+      <NavContent currentNavContentId={currentNavContentId} />
     </div>
   )
 }
