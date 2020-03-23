@@ -1,20 +1,8 @@
-import React, { useMemo } from "react"
+import React, { useMemo, memo } from "react"
 import classNames from "classnames"
-import { useClock } from "../hook"
+import PropTypes from "prop-types"
 
-window.TIMER = null
-const INIT_PROGRESS_VALUE = 1974
-
-const Clock = ({ initCountdown, currentMission, initIsBell, finishMission, skipMission } = {}) => {
-  const [isPlay, isBell, progress, time, onBtnPlay, onBtnBell, onBtnSkip] = useClock({
-    currentMissionId: currentMission.id,
-    initProgressValue: INIT_PROGRESS_VALUE,
-    initCountdown,
-    initIsBell,
-    skipMission,
-    finishMission
-  })
-
+const Clock = ({ isBell, isPlay, currentMission, time = 0, progress, onBtnBell, onBtnPlay, onBtnNext }) => {
   const renderBtnPlayClass = useMemo(
     () =>
       classNames({
@@ -38,18 +26,18 @@ const Clock = ({ initCountdown, currentMission, initIsBell, finishMission, skipM
   const renderTime = useMemo(() => {
     const minute = Math.floor(time / 60).toString()
     const second = (time % 60).toString()
-    let finishedMinute = minute
-    let finishedSecond = second
+    let filteredMinute = minute
+    let filteredSecond = second
 
     if (minute.length === 1 || minute.length === 0) {
-      finishedMinute = `0${minute}`
+      filteredMinute = `0${minute}`
     }
 
     if (second.length === 1) {
-      finishedSecond = `0${second}`
+      filteredSecond = `0${second}`
     }
 
-    return `${finishedMinute}:${finishedSecond}`
+    return `${filteredMinute}:${filteredSecond}`
   }, [time])
 
   return (
@@ -59,16 +47,27 @@ const Clock = ({ initCountdown, currentMission, initIsBell, finishMission, skipM
           <circle className="clock-cycle-upper-layer" cx="318.5" cy="318.5" r="315" style={{ strokeDashoffset: renderProgressStyle }}></circle>
           <circle className="clock-cycle-lower-layer" cx="318.5" cy="318.5" r="315"></circle>
         </svg>
-        <h1 className="current-mission">{currentMission.mission}</h1>
+        <h1 className="current-mission">{currentMission}</h1>
         <div className="time">{renderTime}</div>
         <div className="control-bar">
           <div className={renderBtnBellClass} onClick={onBtnBell}></div>
           <div className={renderBtnPlayClass} onClick={onBtnPlay}></div>
-          <div className="btn-skip" onClick={onBtnSkip}></div>
+          <div className="btn-next" onClick={onBtnNext}></div>
         </div>
       </div>
     </div>
   )
 }
 
-export default Clock
+Clock.propTypes = {
+  isBell: PropTypes.bool.isRequired,
+  isPlay: PropTypes.bool.isRequired,
+  currentMission: PropTypes.string.isRequired,
+  time: PropTypes.number.isRequired,
+  progress: PropTypes.number.isRequired,
+  onBtnBell: PropTypes.func.isRequired,
+  onBtnPlay: PropTypes.func.isRequired,
+  onBtnNext: PropTypes.func.isRequired
+}
+
+export default memo(Clock)
