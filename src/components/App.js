@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext, useRef } from "react"
+import React, { useEffect, useState, useContext, useRef, useMemo } from "react"
 import { ContextStore } from "../context"
 import Deco from "./Deco"
 import Header from "./Header"
 import AddMission from "./AddMission"
 import Clock from "./Clock"
+import Nav from "./Nav"
 import cons from "../constants"
-import { useMemo } from "react"
 
 window.TIMER = null
 
@@ -87,6 +87,7 @@ const App = () => {
         onBtnPlay={handleBtnPlay}
         onBtnNext={handleNextMission}
       />
+      <Nav isOpen={isOpen} />
     </div>
   )
 }
