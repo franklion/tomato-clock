@@ -49,6 +49,10 @@
 
 - Mixin VS Extend: https://ithelp.ithome.com.tw/articles/10157149
 
-- clock countdown: https://codepen.io/franklion1227/pen/MWwXdQY?editors=1010
+- Clock countdown: https://codepen.io/franklion1227/pen/MWwXdQY?editors=1010
 
-- requestAnimationFrame doc: https://github.com/zhansingsong/js-leakage-patterns/blob/master/requestAnimationFrame/requestAnimationFrame.md
+- RequestAnimationFrame doc: https://github.com/zhansingsong/js-leakage-patterns/blob/master/requestAnimationFrame/requestAnimationFrame.md
+
+- Good custom hook: https://github.com/rehooks/awesome-react-hooks
+
+- Collection of React Hooks: https://nikgraf.github.io/react-hooks/
