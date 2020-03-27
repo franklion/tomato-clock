@@ -56,3 +56,5 @@
 - Good custom hook: https://github.com/rehooks/awesome-react-hooks
 
 - Collection of React Hooks: https://nikgraf.github.io/react-hooks/
+
+- often changing value from usecallback: https://reactjs.org/docs/hooks-faq.html#how-to-read-an-often-changing-value-from-usecallback
