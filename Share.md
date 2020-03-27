@@ -49,7 +49,11 @@ export const useAutoFocus = (inputRef, other) => {
 - [情境]：setInterval() 本身必不保證時間到就執行回調函數，以及在執行過程中切換分頁或是縮小分頁，再回到原本頁面時都有可能發現時間不準了
 - [實例]：https://codepen.io/franklion1227/pen/jOPXNBL?editors=1010
 - [參考]：https://github.com/zhansingsong/js-leakage-patterns/blob/master/requestAnimationFrame/requestAnimationFrame.md
+- [參考]：https://developer.mozilla.org/zh-TW/docs/Web/API/Window.requestAnimationFrame
+- [參考]：https://developers.google.com/web/fundamentals/performance/rendering/optimize-javascript-execution?hl=zh-tw
 - [結論]：盡可能使用 requestAnimationFrame 來進行時間的處理
+  - setInterval() 時間到時，把回調函數放入佇列中(佇列中可能還有其他代碼)，繼續下一次的計時，再把回調函數放入佇列中，此時上次的回調如果還沒有執行，新增的回調就取消，造成畫面上更新問題。
+  - requestAnimationFrame() 要求瀏覽器下次更新畫面前執行自訂函式，當頁面處在背景時，大部分瀏覽器會暫停 requestAnimationFrame() 呼叫，改善效能。
 
 ## 番茄鐘的動態作法
 
