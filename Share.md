@@ -1,7 +1,7 @@
 ## Hook
 
 - 為什麼要用?
-  - 避免 HOC Ｗ rapper Hell
+  - 避免 HOC wrapper hell
   - 容易重複使用
   - 代碼變簡潔了，不用再寫一大堆的生命週期方法
 - useEffect, useState, useCallback, useMemo, useContext, useRef
@@ -25,18 +25,18 @@ export const useAutoFocus = (inputRef, other) => {
 - [和 redux 差異]：沒有 Action，直接透過 dispatch 進行呼叫，修改狀態
 - [注意]：dispatch 本身是穩定的，不會在重新渲染時改變。所以可在 useEffect 或 useCallback 依賴中省略
 
-## 父元件更新狀態 如何避免子元件不必要的渲染?
+## 父組件更新狀態 如何避免子組件不必要的渲染?
 
-- [情境]：父元件和子元件的結構是開發時一定會遇到的，如何去避免子元件不要進行多餘的渲染
+- [情境]：父組件和子組件的結構是開發時一定會遇到的，如何去避免子組件不要進行多餘的渲染
 - [實例]：https://codesandbox.io/s/awesome-kapitsa-k9omm
-- [結論]：子元件可以使用 memo 進行優化，若為 pure function，則不管父元件如何改變，子元件只會渲染一次
+- [結論]：子組件可以使用 memo 進行優化，若為 pure function，則不管父組件如何改變，子組件只會渲染一次
 
 ## function componet 中使用 memo 就萬無一失嗎？
 
-- [情境]：父元件傳遞函式給子元件，子元件也加了 memo，但還是重複渲染
+- [情境]：父組件傳遞函式給子組件，子組件也加了 memo，但還是重複渲染
 - [實例 1]：https://codesandbox.io/s/restless-hill-ih5yn
 - [實例 2]：https://codesandbox.io/s/boring-flower-37rul
-- [結論]：父元件若傳遞的 props 為陣列、物件、函式 ...等，要特別小心，因為它們屬於傳址方式，就算內容沒有改變，記憶體位址也改變了。
+- [結論]：父組件若傳遞的 props 為陣列、物件、函式 ...等，要特別小心，因為它們屬於傳址方式，就算內容沒有改變，記憶體位址也改變了。
 
 ## sass/scss 中 mixin 和 extend 差異？
 
@@ -70,7 +70,7 @@ export const useAutoFocus = (inputRef, other) => {
 
 ## createContext 的預設值
 
-- [情境]：使用全域的資料流管理時，通常會在元件樹最上層建立 Context，把集中管理的狀態放在那裡，可以設定預設值，但如何知道它是可以生效的？
+- [情境]：使用全域的資料流管理時，通常會在組件樹最上層建立 Context，把集中管理的狀態放在那裡，可以設定預設值，但如何知道它是可以生效的？
 - [實例]：https://codesandbox.io/s/jolly-hooks-y1ksj
 - [參考]：https://zh-hant.reactjs.org/docs/context.html#reactcreatecontext
 - [結論]：其實你可以把 createContext() 預設值為 null，因為 Context.Provider prop value 已經會給予初始值
