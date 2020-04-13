@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useCallback, useMemo, memo, useContext, useRef } from "react"
+import React, { useEffect, useState, useCallback, memo, useContext, useRef } from "react"
 import { ContextStore } from "../context"
-import classNames from "classnames"
 import cons from "../constants"
 import moment from "moment"
 import {
@@ -31,15 +30,6 @@ const ListSection = ({ currentNavContentId }) => {
       setMission("")
     }
   }, [newMissionRef, dispatch])
-
-  const renderListSectionClass = useMemo(
-    () =>
-      classNames({
-        "list-section": true,
-        "is-open": currentNavContentId === cons.LIST_SECTION
-      }),
-    [currentNavContentId]
-  )
 
   return (
     <StyledListSection isOpen={currentNavContentId === cons.LIST_SECTION}>
