@@ -75,7 +75,7 @@ function test(color) {
 
 ```
 const fruitColor = new Map()
-  .set('red, ['red', 'strawberry'])
+  .set('red', ['red', 'strawberry'])
   .set('yellow', ['banana', 'pineapple'])
   .set('purple', ['grape', 'plum'])
 
